@@ -1,0 +1,44 @@
+<html>
+<style>
+  .ct{
+    width: 910px;
+    margin: auto;
+  }
+  .main{
+    float: left;
+    width: 450px;
+    height: 300px;
+    border: 1px solid #ccc;
+  }
+  .main input{
+    margin: 20px;
+    width: 200px;
+  }
+  .iframe{
+    float: right;
+  }
+  iframe{
+    width: 450px;
+    height: 300px;
+    border: 1px dashed #ccc;
+  }
+</style>
+
+<div class="ct">
+  <h1>使用降域实现跨域</h1>
+  <div class="main">
+    <input type="text" placeholder="http://b.cc.com:8080/b.html">
+  </div>
+
+  <iframe src="http://a.cc.com:8080/a.html" frameborder="0" ></iframe>
+
+</div>
+
+<script>
+//URL: http://b.cc.com:8080/b.html
+document.querySelector('input').addEventListener('input', function(){
+	window.parent.document.querySelector('input').value = this.value;
+})
+document.domain = "cc.com"
+</script>
+</html>
