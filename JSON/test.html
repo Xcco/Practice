@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>news</title>
+  <style>
+    .container{
+      width: 900px;
+      margin: 0 auto;
+    }
+    ul,
+    li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    body {
+        font: 20px/1.5  Helvetica, arial, "Microsoft Yahei", "微软雅黑", STXihei, "华文细黑", sans-serif;
+        padding: 50px;
+        min-width: 550px;
+    }
+    .change{
+      border: none;
+      outline: none;
+      margin: 30px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background: #F0D73E;
+      font: 20px/1.5  "Microsoft Yahei", "微软雅黑", STXihei, "华文细黑", sans-serif;
+      color: #FFF;
+      cursor: pointer;
+    }
+    .news{
+      padding: 30px 20px;
+    }
+    .news li{
+      border:1px solid #FF5733;
+      border-radius: 3px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+      <ul class="news">
+        <li>第11日前瞻：中国冲击4金 博尔特再战</li>
+        <li>男双力争会师决赛 </li>
+        <li>女排将死磕巴西！</li>
+      </ul>
+      <button class="change">换一组</button>
+    </div>
+<script>
+  let news =document.querySelector(".news")
+  let change =document.querySelector(".change")
+  change.addEventListener("click",function () {
+    let script=document.createElement("script")
+    script.src="http://localhost:8080/getNews?callback=changeContent"
+    document.head.appendChild(script)
+    document.head.removeChild(script)
+  })
+  function changeContent(receive_news){
+    let li=""
+    receive_news.forEach(function(element){
+      li+="<li>"+element+"</li>"
+    })
+    news.innerHTML=li
+  }
+</script>
+</body>
+</html>
